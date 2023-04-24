@@ -18,4 +18,13 @@ public class BookstorePojo {
         pojo.setNumber(bookstore.getNumber());
         return pojo;
     }
+
+    public static Bookstore toEntity(BookstorePojo pojo) {
+        Bookstore bookstore = new Bookstore();
+        bookstore.setId(pojo.getId());
+        bookstore.setAddress(pojo.getAddress());
+        bookstore.setNumber(pojo.getNumber());
+
+        return bookstore;
+    }
 }
