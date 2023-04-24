@@ -6,6 +6,7 @@ import com.example.bookstore_kur.entity.Bookstore;
 import com.example.bookstore_kur.entity.Image;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +26,15 @@ public class BookPojo {
     private List<AuthorPojo> authors;
 
     public static BookPojo fromEntity(Book book){
+        String urlImage = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("api/images/")
+                .path(book.getImage().getId())
+                .toUriString();
         BookPojo pojo = new BookPojo();
         pojo.setBarecode(book.getBarecode());
         pojo.setCount(book.getCount());
         pojo.setPrice(book.getPrice());
-//        pojo.setImage(book.getImage());
+        pojo.setImage(urlImage);
 
         pojo.setNameBook(book.getNameBook());
         pojo.setYearPublic(book.getYearPublic());
