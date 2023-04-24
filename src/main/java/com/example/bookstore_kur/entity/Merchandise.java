@@ -31,8 +31,8 @@ public class Merchandise {
     @JoinColumn(name = "image_id", referencedColumnName = "id")
     private Image image;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "bookstore", foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
-//    private Bookstore bookstore;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "bookstore", foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
+    private Bookstore bookstore;
 }
 

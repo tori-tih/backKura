@@ -20,4 +20,7 @@ public class Bookstore {
 
     @Column(name = "number", columnDefinition = "text", length = 11, nullable = false)
     private String number;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "bookstore", cascade = CascadeType.ALL)
+    private List<Merchandise> merchandises;
 }
