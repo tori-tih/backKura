@@ -28,7 +28,7 @@ public class Merchandise {
             CascadeType.PERSIST
     })
 
-    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    @JoinColumn(name = "image_id", referencedColumnName = "id", nullable = true)
     private Image image;
 
     @ManyToOne(fetch = FetchType.EAGER)

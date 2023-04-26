@@ -15,9 +15,9 @@ public class Book extends Merchandise{
 
     private int yearPublic;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "authors",
+            name = "authors_books",
             joinColumns = @JoinColumn( name = "book_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn( name = "author_id", referencedColumnName = "id")
     )

@@ -1,6 +1,8 @@
 package com.example.bookstore_kur.controller;
 
 import com.example.bookstore_kur.dto.AuthorPojo;
+import com.example.bookstore_kur.dto.BookPojo;
+import com.example.bookstore_kur.dto.BookstorePojo;
 import com.example.bookstore_kur.dto.JointProductPojo;
 import com.example.bookstore_kur.services.JointProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +20,14 @@ public class JointProductController {
     @GetMapping
     public List<JointProductPojo> findAll() {return jointProductService.findAll();}
 
+    @PostMapping("/store")
+    public List<JointProductPojo> findByStore(@RequestBody BookstorePojo store) {return  jointProductService.findByStore(store);}
     @PostMapping
-    public JointProductPojo addNewAuthor(@RequestBody JointProductPojo jProduct) {return jointProductService.addNewJproduct(jProduct);}
+    public JointProductPojo addNewJproduct(@RequestBody JointProductPojo jProduct) {return jointProductService.addNewJproduct(jProduct);}
 
     @PutMapping
-    public JointProductPojo updateAuthor(@RequestBody JointProductPojo jProduct) {return jointProductService.addNewJproduct(jProduct);}
+    public JointProductPojo updateJproduct(@RequestBody JointProductPojo jProduct) {return jointProductService.addNewJproduct(jProduct);}
 
     @DeleteMapping("/{id}")
     public void deleteAuthor(@PathVariable Long id) { jointProductService.deleteJproduct(id);}
-
 }

@@ -14,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 public class BookPojo {
+    private Long id;
     private String barecode;
     private int count;
     private double price;
@@ -22,19 +23,22 @@ public class BookPojo {
 
     private String nameBook;
     private int yearPublic;
+    private BookstorePojo bookstore;
 
     private List<AuthorPojo> authors;
 
     public static BookPojo fromEntity(Book book){
-        String urlImage = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("api/images/")
-                .path(book.getImage().getId())
-                .toUriString();
+//        String urlImage = ServletUriComponentsBuilder.fromCurrentContextPath()
+//                .path("api/images/")
+//                .path(book.getImage().getId())
+//                .toUriString();
         BookPojo pojo = new BookPojo();
+        pojo.setId(book.getId());
         pojo.setBarecode(book.getBarecode());
         pojo.setCount(book.getCount());
         pojo.setPrice(book.getPrice());
-        pojo.setImage(urlImage);
+//        pojo.setImage(urlImage);
+        pojo.setBookstore(BookstorePojo.fromEntity(book.getBookstore()));
 
         pojo.setNameBook(book.getNameBook());
         pojo.setYearPublic(book.getYearPublic());
@@ -50,6 +54,7 @@ public class BookPojo {
 
     public static Book toEntity(BookPojo pojo){
         Book book = new Book();
+        book.setId(pojo.getId());
         book.setBarecode(pojo.getBarecode());
         book.setCount(pojo.getCount());
         book.setPrice(pojo.getPrice());
@@ -62,6 +67,7 @@ public class BookPojo {
             authors.add(AuthorPojo.toEntity(author));
         }
         book.setAuthors(authors);
+        book.setBookstore(BookstorePojo.toEntity(pojo.getBookstore()));
 
         return book;
     }
